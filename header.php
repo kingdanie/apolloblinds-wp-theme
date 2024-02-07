@@ -27,13 +27,13 @@
 
 	<header id="masthead" class="site-header">
 		<div class="flex justify-end gap-10 border-b-2 border-gray-200 border-solid px-5 py-2">
-			<div><a href="mailto:edinburgh@apollo-blinds.co.uk">E: edinburgh@apollo-blinds.co.uk</a></div>
-			<div><a href="tel:01316390153">T: 0131 639 0153</a></div>
-			<div>
-				<span>F</span>
-				<span>P</span>
-				<span>T</span>
-				<span>I</span>
+			<div class="hidden md:flex"><a href="mailto:edinburgh@apollo-blinds.co.uk">E: <span class="text-cyan-700">edinburgh@apollo-blinds.co.uk</span></a></div>
+			<div class="hidden md:flex"><a href="tel:01316390153">T: <span class="text-cyan-700">0131 639 0153</span></a></div>
+			<div class="flex gap-2 items-center">
+				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/facebook.svg' /></span>
+				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/pinterest.svg' /></span>
+				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/twitter.svg' /></span>
+				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/instagram.svg' /></span>
 			</div>
 		</div>
 		<div class="flex items-center justify-between p-5">
