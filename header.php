@@ -36,9 +36,10 @@
 				<span>I</span>
 			</div>
 		</div>
+		<div class="flex items-center justify-between p-5">
 		<div class="site-branding">
+			<div class="max-w-[200px]"> <?php the_custom_logo(); ?></div>
 			<?php
-			the_custom_logo();
 			if ( is_front_page() && is_home() ) :
 				?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -54,6 +55,17 @@
 				<p class="site-description"><?php echo $apolloblind_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
+
+		<button class="px-5 py-2 bg-cyan-400 text-white max-h-[50px]">
+				BOOK AN APPOINTMENT
+		</button>
+		</div>
+		<div class="bg-gray-500 flex justify-around p-5 text-white">
+			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/MADE-TO-MEASURE.png' /> MADE-TO-MEASURE</div>
+			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/Free-no-obligation-quote.png' /> Free no obligation quote & design visit</div>
+			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/Motorised-options.png' /> Motorised options</div>
+			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/25-YEAR-GAURANTEE.png' /> 25 YEAR GAURANTEE</div>
+		</div>
 
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'apolloblind' ); ?></button>
