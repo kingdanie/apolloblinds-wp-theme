@@ -11,33 +11,36 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer bg-gray-900 text-white flex flex-col p-2 items-center">
-		<div class="text-center gap-2 flex flex-col">
+	<footer id="colophon" class="site-footer bg-black text-white flex flex-col gap-10 p-2 items-center">
+		<div class="text-center gap-1 flex flex-col pt-2">
 			<div>374 reviews</div>
-			<div class="flex gap-1 text-white">
+			<div><img src='<?php bloginfo('template_directory'); ?>/img/trustpilot.png' /></div>
+			<!-- <div class="flex gap-1 text-white">
 				<span class="bg-cyan-600 p-3">x</span>
 				<span class="bg-cyan-600 p-3">x</span>
 				<span class="bg-cyan-600 p-3">x</span>
 				<span class="bg-cyan-600 p-3">x</span>
-			</div>
-			<div>
-				<span class="text-cyan-600">x</span> Trustpilot
-			</div>
+			</div> -->
+			<!-- <div>
+				<span class="text-cyan-600">X</span> Trustpilot
+			</div> -->
 		</div>
-		<nav id="site-navigation" class=" items-center mt-12 content-center p-5">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'apolloblind' ); ?></button>
+		<nav id="site-navigation menu-toggle flex items-center gap-3" class=" mt-3">
 			<?php
 			wp_nav_menu(
 				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
+					'theme_location' => 'menu-2',
+					'menu_id'        => 'footer-menu',
+					'menu_class'        => 'grid grid-cols-2 sm:grid-col-3 gap-x-2 gap-3 items-center lg:grid-cols-7 text-center',
 				)
 			);
 			?>
 		</nav>
-		<div>
-
-		</div>
+		<div class="grid gap-3 md:flex items-center">
+				 <span class="col-span-3 "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/hunterdouglas.png' /></span>
+				 <span class=" "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/bbsa.png' /></span>
+				 <span class=" "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/makeitsafe.png' /></span>
+			</div>
 		<div class="site-info text-gray-600">
 			<a class="text-gray-600" href="<?php echo esc_url( __( 'https://wordpress.org/', 'apolloblind' ) ); ?>">
 				<?php
