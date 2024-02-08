@@ -50,6 +50,7 @@ function apolloblind_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'apolloblind' ),
+			'menu-2' => esc_html__( 'Footer', 'apolloblind' ),
 		)
 	);
 
@@ -93,7 +94,7 @@ function apolloblind_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 250,
+			'height'      => 50,
 			'width'       => 250,
 			'flex-width'  => true,
 			'flex-height' => true,
@@ -177,3 +178,86 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+/**
+ * ACF Load More Repeater
+*/
+
+// add action for logged in users
+add_action('wp_ajax_my_repeater_show_more', 'my_repeater_show_more');
+// add action for non logged in users
+add_action('wp_ajax_nopriv_my_repeater_show_more', 'my_repeater_show_more');
+
+function my_repeater_show_more() {
+	// validate the nonce
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field_nonce')) {
+		exit;
+	}
+	// make sure we have the other values
+	if (!isset($_POST['post_id']) || !isset($_POST['offset'])) {
+		return;
+	}
+	$show = 9; // how many more to show
+	$start = $_POST['offset'];
+	$end = $start+$show;
+	$post_id = $_POST['post_id'];
+	// use an object buffer to capture the html output
+	// alternately you could create a varaible like $html
+	// and add the content to this string, but I find
+	// object buffers make the code easier to work with
+	ob_start();
+	if (have_rows('faq', $post_id)) {
+
+		while( have_rows('faq', $post_id) ) { 
+			the_row(); 
+
+		if( have_rows('faq_questions', $post_id) ) {
+			 $total_faqs = count( have_rows('faq_questions') );
+                            //$faqs_count = 1;
+                            //$initial_number = 3;	
+		//$total = count(get_field('faq', $post_id));
+		$count = 0;
+		while (have_rows('faq_questions', $post_id)) {
+			the_row();
+			       $faq_heading = get_sub_field( 'title' );
+                        $faq_desc = get_sub_field( 'description' );
+			if ($count < $start) {
+				// we have not gotten to where
+				// we need to start showing
+				// increment count and continue
+				$count++;
+				continue;
+			}
+			?>
+                                <button class="group border-t border-r border-l border-accent focus:outline-none">
+                                    <div class="flex items-center justify-between h-12 px-3 font-semibold bg-[#938D8C] hover:bg-gray-700">
+                                        <span class="text-white truncate"><?php echo esc_html( $faq_heading )?></span>
+                                        <svg class="h-5 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="max-h-0 overflow-hidden duration-300 group-focus:max-h-40">
+                                        <div class="flex items-center h-8 p-10 text-sm hover:bg-gray-200"><?php echo esc_textarea( $faq_desc ); ?></div>
+                                    </div>
+                                </button>
+			<?php 
+			$count++;
+			if ($count == $end) {
+				// we have shown the number, break out of loop
+				break;
+			}
+		} // end while have rows
+		}
+	}
+	
+	} // end if have rows
+	$content = ob_get_clean();
+	// check to see if we have shown the last item
+	$more = false;
+	if ($total_faqs > $count) {
+		$more = true;
+	}
+	// output our 3 values as a json encoded array
+	echo json_encode(array('content' => $content, 'more' => $more, 'offset' => $end));
+	exit;
+} // end function my_repeater_show_more
