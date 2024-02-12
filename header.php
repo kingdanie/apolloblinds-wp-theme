@@ -16,6 +16,9 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 	<?php wp_head(); ?>
 </head>
@@ -26,14 +29,48 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'apolloblind' ); ?></a>
 
 	<header id="masthead" class="site-header">
+		<?php 
+				 $email = esc_html(get_theme_mod( 'setting_contact_email' ));
+				 $number = get_theme_mod( 'setting_contact_phone' );
+				 $facebook = esc_html(get_theme_mod( 'setting_social_facebook' ));
+				 $pinterests= esc_html(get_theme_mod( 'setting_social_pinterest' ));
+				 $instagram= esc_html(get_theme_mod( 'setting_social_linkedin' ));
+				 $twitter= esc_html(get_theme_mod( 'setting_social_twitter' ));
+		?>
 		<div class="flex justify-end gap-10 border-b-2 border-gray-200 border-solid px-5 py-2">
-			<div class="hidden md:flex"><a href="mailto:edinburgh@apollo-blinds.co.uk">E: <span class="text-cyan-700">edinburgh@apollo-blinds.co.uk</span></a></div>
-			<div class="hidden md:flex"><a href="tel:01316390153">T: <span class="text-cyan-700">0131 639 0153</span></a></div>
+			<div class="hidden md:flex">
+				<a href="mailto:<?php echo $email ?>">
+					E: <span class="text-cyan-700"><?php echo $email ?></span>
+				</a>
+			</div>
+
+			<div class="hidden md:flex">
+				<a href="tel:<?php echo $number ?>">
+					T: <span class="text-primary"><?php echo $number ?></span>
+				</a>
+			</div>
+
 			<div class="flex gap-2 items-center">
-				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/facebook.svg' /></span>
-				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/pinterest.svg' /></span>
-				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/twitter.svg' /></span>
-				 <span><img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/instagram.svg' /></span>
+				<?php if ($facebook): ?>
+					<a href="https://facebook.com/<?php echo $facebook ?>">
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/facebook.svg' />
+					</a>
+				<?php endif; ?>
+				<?php if ($pinterests): ?>
+					<a href="https://pinterest.com/<?php echo $pinterests ?>">
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/pinterest.svg' />
+					</a>
+				<?php endif; ?>
+				<?php if ($twitter): ?>
+					<a href="https://twitter.com/<?php echo $twitter ?>">
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/twitter.svg' />
+					</a>
+				<?php endif; ?>
+				<?php if ($instagram): ?>
+					<a href="https://instagram.com/<?php echo $instagram ?>">
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/instagram.svg' />
+					</a>
+				<?php endif; ?>
 			</div>
 		</div>
 		<div class="flex items-center justify-between p-0.5">
@@ -56,11 +93,11 @@
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
-		<button class="px-5 py-2 bg-cyan-400 text-white text-[10px] md:text-sm max-h-[50px]">
+		<button class="px-5 py-2 bg-primary text-white text-[10px] md:text-sm max-h-[50px]">
 				BOOK AN APPOINTMENT
 		</button>
 		</div>
-		<div class="bg-gray-500 flex justify-around p-1 text-white">
+		<div class="bg-gray-500 flex justify-around p-2 text-white">
 			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/MADE-TO-MEASURE.png' /> MADE-TO-MEASURE</div>
 			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/Free-no-obligation-quote.png' /> Free no obligation quote & design visit</div>
 			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/Motorised-options.png' /> Motorised options</div>
