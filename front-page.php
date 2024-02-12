@@ -231,7 +231,7 @@ get_header();
                                 ?>
                                 <div class="grid grid-cols-4 relative gap-3  border-border-grey border-b-2 border-t-2 py-10">
                                     <div class="relative">
-                                        <div class="font-light text-[5em] top-[-25px] md:top-[-40px] md:text-[10em] absolute md:right-[15px]"
+                                        <div class="choose-us-count font-light text-[5em] top-[-25px] md:top-[-40px] md:text-[10em] absolute md:right-[15px]"
                                             style="<?php echo $count % 2 === 0 ? 'color: #efefef; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;' : ''; ?>"
                                         > 
                                             <?php echo $count; ?> 
@@ -459,7 +459,7 @@ get_header();
                                                 <?php echo $branch_finder['title']; ?>
                                         </p>
                                         <div>
-                                            <a class="bg-primary py-3 px-10 text-white" href="<?php echo $branch_finder['finder_button']; ?>"> Find A Store</a>
+                                            <a class="bg-primary py-3 px-10 text-white" href="<?php echo $branch_finder['finder_button']; ?>"> <span class="text-white">Find A Store</span></a>
                                         </div>
 
                                 </div>
