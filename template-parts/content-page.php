@@ -12,7 +12,7 @@
 
             <?php if( have_rows('slides') ): ?>
                 <section class="w-full">
-                        <ul class="slides w-full" style="background-color: red; background-size: cover;">
+                        <ul class="slides w-full">
                         <?php while( have_rows('slides') ): the_row(); 
                             $image = get_sub_field('slide_background');
                             $heading = get_sub_field('heading');
