@@ -12,6 +12,8 @@ if ( ! defined( 'APOLLOBLIND_VERSION' ) ) {
 	define( 'APOLLOBLIND_VERSION', '1.0.0' );
 }
 
+include_once(dirname(__FILE__) . '/theme-settings.php');
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -170,6 +172,88 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+function theme_customizer_settings($wp_customize) {
+    // Font Color
+    $wp_customize->add_setting('font_color', array(
+        'default' => '#676767', // Default font color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Header Color
+    $wp_customize->add_setting('header_color', array(
+        'default' => '#676767', // Default header color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Primary Color
+    $wp_customize->add_setting('primary_color', array(
+        'default' => '#87c7c8', // Default primary color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Accent Color
+    $wp_customize->add_setting('accent_color', array(
+        'default' => '#676767', // Default accent color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Horizontal Rule Color
+    $wp_customize->add_setting('hr_color', array(
+        'default' => '#707070', // Default primary color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Accordion Color
+    $wp_customize->add_setting('accordion_grey', array(
+        'default' => '#938d8c', // Default accent color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Accordion Color
+    $wp_customize->add_setting('apollo_grey', array(
+        'default' => '#efefef', // Default accent color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Add control for each color setting
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'font_color', array(
+        'label' => __('Font Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'header_color', array(
+        'label' => __('Header Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'primary_color', array(
+        'label' => __('Primary Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'accent_color', array(
+        'label' => __('Accent Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hr_color', array(
+        'label' => __('Horizontal Rule Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'accordion_grey', array(
+        'label' => __('Accordion Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'apollo_grey', array(
+        'label' => __('Accordion Color', 'theme_text_domain'),
+        'section' => 'colors',
+    )));
+}
+add_action('customize_register', 'theme_customizer_settings');
+
 
 /**
  * Load Jetpack compatibility file.
