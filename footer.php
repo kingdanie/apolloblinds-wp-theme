@@ -14,7 +14,7 @@
 	<footer id="colophon" class="site-footer bg-black text-white flex flex-col gap-10 p-2 items-center">
 		<div class="text-center gap-1 flex flex-col pt-2">
 			<div>374 reviews</div>
-			<div><img src='<?php bloginfo('template_directory'); ?>/img/trustpilot.png' /></div>
+			<div><img src='<?php bloginfo('template_directory'); ?>/assets/img/trustpilot.png' /></div>
 			<!-- <div class="flex gap-1 text-white">
 				<span class="bg-cyan-600 p-3">x</span>
 				<span class="bg-cyan-600 p-3">x</span>
@@ -37,9 +37,9 @@
 			?>
 		</nav>
 		<div class="grid gap-3 md:flex items-center">
-				 <span class="col-span-3 "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/hunterdouglas.png' /></span>
-				 <span class=" "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/bbsa.png' /></span>
-				 <span class=" "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/makeitsafe.png' /></span>
+				 <span class="col-span-3 "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/assets/img/hunterdouglas.png' /></span>
+				 <span class=" "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/assets/img/bbsa.png' /></span>
+				 <span class=" "><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/assets/img/makeitsafe.png' /></span>
 			</div>
 		<div class="site-info text-gray-600">
 			<a class="text-gray-600" href="<?php echo esc_url( __( 'https://wordpress.org/', 'apolloblind' ) ); ?>">

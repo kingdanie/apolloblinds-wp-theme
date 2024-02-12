@@ -53,22 +53,22 @@
 			<div class="flex gap-2 items-center">
 				<?php if ($facebook): ?>
 					<a href="https://facebook.com/<?php echo $facebook ?>">
-						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/facebook.svg' />
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/assets/img/facebook.svg' />
 					</a>
 				<?php endif; ?>
 				<?php if ($pinterests): ?>
 					<a href="https://pinterest.com/<?php echo $pinterests ?>">
-						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/pinterest.svg' />
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/assets/img/pinterest.svg' />
 					</a>
 				<?php endif; ?>
 				<?php if ($twitter): ?>
 					<a href="https://twitter.com/<?php echo $twitter ?>">
-						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/twitter.svg' />
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/assets/img/twitter.svg' />
 					</a>
 				<?php endif; ?>
 				<?php if ($instagram): ?>
 					<a href="https://instagram.com/<?php echo $instagram ?>">
-						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/img/instagram.svg' />
+						<img width="18" height="18" src='<?php bloginfo('template_directory'); ?>/assets/img/instagram.svg' />
 					</a>
 				<?php endif; ?>
 			</div>
@@ -98,10 +98,10 @@
 		</button>
 		</div>
 		<div class="bg-gray-500 flex justify-around p-2 text-white">
-			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/img/MADE-TO-MEASURE.png' /> MADE-TO-MEASURE</div>
-			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/Free-no-obligation-quote.png' /> Free no obligation quote & design visit</div>
-			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/Motorised-options.png' /> Motorised options</div>
-			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/img/25-YEAR-GAURANTEE.png' /> 25 YEAR GAURANTEE</div>
+			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src='<?php bloginfo('template_directory'); ?>/assets/img/MADE-TO-MEASURE.png' /> MADE-TO-MEASURE</div>
+			<div class="flex gap-3 uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/assets/img/Free-no-obligation-quote.png' /> Free no obligation quote & design visit</div>
+			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/assets/img/Motorised-options.png' /> Motorised options</div>
+			<div class="md:flex md:show gap-3 hidden uppercase items-end text-sm"><img width="auto" height="auto" src = '<?php bloginfo('template_directory'); ?>/assets/img/25-YEAR-GAURANTEE.png' /> 25 YEAR GAURANTEE</div>
 		</div>
 
 		<!-- <nav id="site-navigation" class="main-navigation">
