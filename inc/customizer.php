@@ -31,6 +31,8 @@ function apolloblind_customize_register( $wp_customize ) {
 			)
 		);
 	}
+	//include company information section to the custimzer object
+require_once('social-customizer.php');
 }
 add_action( 'customize_register', 'apolloblind_customize_register' );
 
@@ -56,6 +58,6 @@ function apolloblind_customize_partial_blogdescription() {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function apolloblind_customize_preview_js() {
-	wp_enqueue_script( 'apolloblind-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _VERSION, true );
+	wp_enqueue_script( 'apolloblind-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), APOLLOBLIND_VERSION, true );
 }
 add_action( 'customize_preview_init', 'apolloblind_customize_preview_js' );
