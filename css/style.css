@@ -1,3 +1,73 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-color: #676767;
+  --primary-color: #87c7c8;
+  --apollo-grey: #efefef;
+  --hr-color: #707070;
+  --accordion-grey: #938d8c;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+a {
+color: var(--font-color)
+}
+
+a:visited, a:hover {
+    color: var(--primary-color);
+}
+@media (max-width: 767px) {
+  /* Media query for screens with a maximum width of 767px (mobile devices) */
+  h1,h2 {
+    font-size: 1.688em; /* 27px equivalent to em units */
+  }
+}
+
+h2 {
+  font-size: 2.0625em;
+}
+
+p {
+  font-size: 0.9em;
+  color: var(--font-color);
+}
+
+h2, h3, h4, h5, h6, p {
+    color: var(--font-color);
+}
+
+.border-design {
+    border: 1px solid var(--font-color);
+}
+.image-container {
+        position: relative;
+        top: 10px;
+        left: 10px;
+        height: 100%;
+}
+.image-container img {
+    height: auto;
+}
+
+.max-h-0 {
+	max-height: 0;
+}
+
+.group:focus .group-focus\:max-h-40 {
+	max-height: 10rem;
+}
+
+
+.shutter-samples {
+    display: grid;
+    gap: 1em;
+    grid-auto-rows: minmax(100px,auto);
+    grid-template-columns: repeat(auto-fit,minmax(9em,2fr));
+    padding: 2em 0;
+    width: 100%;
+}
