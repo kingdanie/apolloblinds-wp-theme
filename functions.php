@@ -262,6 +262,34 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Hide ACF Menu so has to make users unable to manage the ACF field types and options
+ */
+add_filter('acf/settings/show_admin', '__return_false');
+
+/**
+ * Check if ACF Pro is active
+ */
+function check_acf_pro() {
+    // Check if ACF Pro plugin is active
+    if ( ! function_exists( 'acf_pro_is_active' ) ) {
+        add_action( 'admin_notices', 'acf_pro_missing_notice' );
+    }
+}
+add_action( 'admin_init', 'check_acf_pro' );
+
+/**
+ * Display notice if ACF Pro is missing
+ */
+function acf_pro_missing_notice() {
+    ?>
+    <div class="notice notice-error is-dismissible">
+        <p><?php esc_html_e( 'This theme requires Advanced Custom Fields (ACF) Pro to be installed and activated. Please install and activate ACF Pro to unlock all features.', 'your-theme-textdomain' ); ?></p>
+    </div>
+    <?php
+}
+
+
 
 /**
  * ACF Load More Repeater

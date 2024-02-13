@@ -48,11 +48,11 @@
   src:
     local('Azo Sans Thin'),
     local('AzoSans-Thin'),
-    url('../assets/fonts/azo-sans/zoSans-Thin.eot?#iefix')
+    url('../assets/fonts/azo-sans/AzoSans-Thin.eot?#iefix')
       format('embedded-opentype'),
-    url('../assets/fonts/azo-sans/zoSans-Thin.woff2') format('woff2'),
-    url('../assets/fonts/azo-sans/zoSans-Thin.woff') format('woff'),
-    url('../assets/fonts/azo-sans/zoSans-Thin.ttf') format('truetype');
+    url('../assets/fonts/azo-sans/AzoSans-Thin.woff2') format('woff2'),
+    url('../assets/fonts/azo-sans/AzoSans-Thin.woff') format('woff'),
+    url('../assets/fonts/azo-sans/AzoSans-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
