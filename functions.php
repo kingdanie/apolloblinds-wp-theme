@@ -300,19 +300,29 @@ add_action('admin_notices', 'acf_pro_not_installed_notice');
 */
 
 // add action for logged in users
-add_action('wp_ajax_my_repeater_show_more', 'my_repeater_show_more');
+add_action('wp_ajax_fetch_faq_items_by_offset', 'fetch_faq_items_by_offset');
 // add action for non logged in users
-add_action('wp_ajax_nopriv_my_repeater_show_more', 'my_repeater_show_more');
+add_action('wp_ajax_nopriv_fetch_faq_items_by_offset', 'fetch_faq_items_by_offset');
 
-function my_repeater_show_more() {
-	// validate the nonce
-	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field_nonce')) {
-		exit;
-	}
-	// make sure we have the other values
-	if (!isset($_POST['post_id']) || !isset($_POST['offset'])) {
-		return;
-	}
+function fetch_faq_items_by_offset() {
+
+
+	// Validate nonce (ensure security)
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field_nonce')) {
+        wp_send_json_error(array('message' => 'Invalid nonce'));
+        exit;
+    }
+
+
+	// Validate and sanitize required data (prevent vulnerabilities)
+    $post_id = isset($_POST['post_id']) ? (int) sanitize_text_field($_POST['post_id']) : 0; // Ensure integer
+    $offset = isset($_POST['offset']) ? (int) sanitize_text_field($_POST['offset']) : 0; // Ensure integer
+
+    if (!$post_id || !$offset) {
+        wp_send_json_error(array('message' => 'Missing required data'));
+        exit;
+    }
+	
 	$show = 9; // how many more to show
 	$start = $_POST['offset'];
 	$end = $start+$show;
@@ -376,4 +386,4 @@ function my_repeater_show_more() {
 	// output our 3 values as a json encoded array
 	echo json_encode(array('content' => $content, 'more' => $more, 'offset' => $end));
 	exit;
-} // end function my_repeater_show_more
+} // end function fetch_faq_items_by_offset
