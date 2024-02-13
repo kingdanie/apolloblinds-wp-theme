@@ -16,32 +16,34 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
-        <section class="w-full">
+       
+        
             <?php if( have_rows('slides') ): ?>
-                <ul class="slides w-full" style="background-color: red; background-size: cover;">
-                    <?php while( have_rows('slides') ): the_row(); 
-                        $image = get_sub_field('slide_background');
-                        $heading = get_sub_field('heading');
-                        ?>
-                        <li class="min-h-[565px] flex flex-col place-content-end p-12" style="background-image: url(<?php echo $image['url']; ?>);">
-                            
-                            <h1 class="text-white" > <?php echo $heading; ?> </h1>
-                            <div class="flex gap-3">
-                                <span class="p-2 rounded-lg bg-white"></span>
-                                <span class="p-2 rounded-lg bg-white"></span>
-                                <span class="p-2 rounded-lg bg-white"></span>
-                            </div>
-                        </li>
+                <section class="w-full">
+                        <ul class="slides w-full">
+                        <?php while( have_rows('slides') ): the_row(); 
+                            $image = get_sub_field('slide_background');
+                            $heading = get_sub_field('heading');
+                            ?>
+                            <li class="min-h-[565px] flex flex-col place-content-end p-12" style="background-image: url(<?php echo $image['url']; ?>);">
 
-                
-                    <?php endwhile; ?>
-                </ul>   
+                                <h1 class="text-white" > <?php echo $heading; ?> </h1>
+                                <div class="flex gap-3">
+                                    <span class="p-2 rounded-lg bg-white"></span>
+                                    <span class="p-2 rounded-lg bg-white"></span>
+                                    <span class="p-2 rounded-lg bg-white"></span>
+                                </div>
+                            </li>
+
+
+                        <?php endwhile; ?>
+                    </ul>   
+                </section>
             <?php endif; ?>
-        </section>
- 
 
-        <section>
+
             <?php if( have_rows('about_us') ): ?>
+            <section>
                 <?php while( have_rows('about_us') ): the_row(); 
 
                     // Get sub field values.
@@ -83,30 +85,31 @@ get_header();
                             <div>
                         </div>
                     </div>
-                   
+
                 <?php endwhile; ?>
+            </section>
             <?php endif; ?>
-        </section>
 
-        <section class="bg-apollo-grey ">
-            <div class="max-w-[1320px] m-auto flex p-3 sm:p-10 justify-center content-center">
-                <?php if( !empty(the_field('video_link')) ): ?>
-                    <div class="embed-container">
-                        <?php the_field('video_link'); ?>
-                    </div>
-                <?php endif; ?>
-             </div>
-        </section>
+        <?php if( have_rows('video_link') ): ?>
+            <section class="bg-apollo-grey ">
+                <div class="max-w-[1320px] m-auto flex p-3 sm:p-10 justify-center content-center">
+                    <?php if( !empty(the_field('video_link')) ): ?>
+                        <div class="embed-container">
+                            <?php the_field('video_link'); ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </section>
+        <?php endif; ?>
 
 
-        
-        <section>
-            <?php if( have_rows('gallery_section') ): ?>
+        <?php if( have_rows('gallery_section') ): ?>
+            <section>
                 <?php while( have_rows('gallery_section') ): the_row(); 
                     $section_heading = get_sub_field( 'section_heading' );
                     $image = get_sub_field('image_gallery');
                                     ?>
-  
+
                  <div class="max-w-[1320px] m-auto flex flex-col p-10 items-center">
                     <h2> <?php echo esc_html( $section_heading ); ?> </h2>
 
@@ -132,8 +135,8 @@ get_header();
                      </div>
                  </div>
                 <?php endwhile; ?>
-            <?php endif; ?>
-        </section>
+            </section>
+        <?php endif; ?>
 
             <!-- OUR PROCESSES SECTION -->
              <?php if( have_rows('our_process') ): ?>
@@ -222,7 +225,7 @@ get_header();
                             <?php if($sebsection): 
                                 $total = count($sebsection);
                                 $count = 1;
-                              
+
                                // $number = 8;				
                                 //looping through the subgroup repeater
                                 while( have_rows('subsections')  ): the_row(); 
@@ -231,7 +234,7 @@ get_header();
                                 ?>
                                 <div class="grid grid-cols-4 relative gap-3  border-border-grey border-b-2 border-t-2 py-10">
                                     <div class="relative">
-                                        <div class="font-light text-[5em] top-[-25px] md:top-[-40px] md:text-[10em] absolute md:right-[15px]"
+                                        <div class="choose-us-count font-light text-[5em] top-[-25px] md:top-[-40px] md:text-[10em] absolute md:right-[15px]"
                                             style="<?php echo $count % 2 === 0 ? 'color: #efefef; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;' : ''; ?>"
                                         > 
                                             <?php echo $count; ?> 
@@ -335,7 +338,7 @@ get_header();
                     <section class="bg-apollo-grey">
                         <div id="faqs-container" class="max-w-[1320px] m-auto flex flex-col p-10 items-center">
                             <h2><?php echo esc_html( $section_heading ); ?></h2>
-                        
+
                             <?php 
                             if( have_rows('faq_questions') ): 
                                 $initial_number = 3; // Moved this initialization out of the loop to avoid reinitialization.
@@ -415,7 +418,7 @@ get_header();
                 }
             </script>
 
-            
+
             <!-- LOCATION SECTION -->
             <?php if( get_field('display_section_on_page') ):
                  if( have_rows('location') ): 
@@ -428,16 +431,16 @@ get_header();
                             <div class="max-w-[1320px] m-auto flex flex-col p-10 items-center">
                             <h2 class="mb-3"><?php echo $branch_location; ?></h2>
 
-                            
+
                            <?php if( have_rows('location_posts') ): ?>
                            <div class="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 gap-3">
 
                                 <?php $location = get_field('location')['location_posts'];
-                                
+
                                   foreach( $location as $post ): 
-        
+
                                     setup_postdata( $post );
-                                    
+
                                     ?>
                                     <div class="border-2 border-border-grey px-2 py-3">
                                     <h3>
@@ -449,17 +452,17 @@ get_header();
                                   </div>
 
                                 <?php endforeach; ?>
-                                
-                           
+
+
                                 <div 
                                     class="gap-5 sm:col-span-2 flex justify-center flex-col p-3 md:p-10 min-h-48" 
                                     style="background-image: url(<?php echo $branch_finder['background']['url'] ; ?>)">
-                                            
+
                                         <p>
                                                 <?php echo $branch_finder['title']; ?>
                                         </p>
                                         <div>
-                                            <a class="bg-primary py-3 px-10 text-white" href="<?php echo $branch_finder['finder_button']; ?>"> Find A Store</a>
+                                            <a class="bg-primary py-3 px-10 text-white" href="<?php echo $branch_finder['finder_button']; ?>"> <span class="text-white">Find A Store</span></a>
                                         </div>
 
                                 </div>
@@ -475,12 +478,8 @@ get_header();
                  endif; 
              endif; ?>
             <!-- END OF LOCATION SECTION -->
-            
-
 
 	</main><!-- #main -->
-
-   
 
 <?php
 get_footer();
