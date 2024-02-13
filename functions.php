@@ -144,7 +144,7 @@ function apolloblind_scripts() {
 	wp_enqueue_style( 'apolloblind-style', get_stylesheet_uri(), array(), APOLLOBLIND_VERSION );
 	wp_style_add_data( 'apolloblind-style', 'rtl', 'replace' );
 	wp_enqueue_style( 'apolloblind-theme-style', get_template_directory_uri() . '/dist/style.css' , array(), APOLLOBLIND_VERSION );
-
+	 wp_enqueue_script( 'jquery' ); // Enqueue WordPress's jQuery
 	wp_enqueue_script( 'apolloblind-navigation', get_template_directory_uri() . '/js/navigation.js', array(), APOLLOBLIND_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
