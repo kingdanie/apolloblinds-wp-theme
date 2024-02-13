@@ -269,27 +269,31 @@ add_filter('acf/settings/show_admin', '__return_false');
 
 /**
  * Check if ACF Pro is active
+ *
+ * @return bool True if ACF Pro is active, false otherwise.
  */
-function check_acf_pro() {
-    // Check if ACF Pro plugin is active
-    if ( ! function_exists( 'acf_pro_is_active' ) ) {
-        add_action( 'admin_notices', 'acf_pro_missing_notice' );
-    }
+function is_acf_pro_active() {
+    return class_exists('acf_pro');
 }
-add_action( 'admin_init', 'check_acf_pro' );
 
 /**
- * Display notice if ACF Pro is missing
+ * Display ACF Pro not installed notice
  */
-function acf_pro_missing_notice() {
-    ?>
-    <div class="notice notice-error is-dismissible">
-        <p><?php esc_html_e( 'This theme requires Advanced Custom Fields (ACF) Pro to be installed and activated. Please install and activate ACF Pro to unlock all features.', 'your-theme-textdomain' ); ?></p>
-    </div>
-    <?php
+function acf_pro_not_installed_notice() {
+    if (!is_acf_pro_active()) {
+        ?>
+        <div class="notice notice-error">
+            <p><strong>This theme requires Advanced Custom Fields Pro to function properly.</strong> Please install and activate the ACF Pro plugin to use all theme features.</p>
+            <p>
+                <a href="https://www.advancedcustomfields.com/pro/" target="_blank">Install ACF Pro</a> |
+                <a href="https://wordpress.org/plugins/advanced-custom-fields/" target="_blank">Install ACF Free (limited features)</a>
+            </p>
+        </div>
+        <?php
+    }
 }
 
-
+add_action('admin_notices', 'acf_pro_not_installed_notice');
 
 /**
  * ACF Load More Repeater
