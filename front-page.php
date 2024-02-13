@@ -388,12 +388,10 @@ get_header();
             <?php endif; ?>
             <!-- END OF FAQ SECTION -->
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
             <script type="text/javascript">
                 function repeater_show_more() {
                     jQuery('#more-faqs').prop('disabled', true);
-                    $('#more-faqs').text('Loading...');
+                    jQuery('#more-faqs').text('Loading...');
                     var my_repeater_field_post_id = <?php echo $post->ID; ?>;
                     var my_repeater_field_offset = <?php echo $initial_number; ?>;
                     var my_repeater_field_nonce = '<?php echo wp_create_nonce('my_repeater_field_nonce'); ?>';
@@ -401,7 +399,7 @@ get_header();
 
                     jQuery.post(
                         my_repeater_ajax_url, {
-                            'action': 'my_repeater_show_more',
+                            'action': 'fetch_faq_items_by_offset',
                             'post_id': my_repeater_field_post_id,
                             'offset': my_repeater_field_offset,
                             'nonce': my_repeater_field_nonce

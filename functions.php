@@ -144,7 +144,7 @@ function apolloblind_scripts() {
 	wp_enqueue_style( 'apolloblind-style', get_stylesheet_uri(), array(), APOLLOBLIND_VERSION );
 	wp_style_add_data( 'apolloblind-style', 'rtl', 'replace' );
 	wp_enqueue_style( 'apolloblind-theme-style', get_template_directory_uri() . '/dist/style.css' , array(), APOLLOBLIND_VERSION );
-
+	 wp_enqueue_script( 'jquery' ); // Enqueue WordPress's jQuery
 	wp_enqueue_script( 'apolloblind-navigation', get_template_directory_uri() . '/js/navigation.js', array(), APOLLOBLIND_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -269,46 +269,60 @@ add_filter('acf/settings/show_admin', '__return_false');
 
 /**
  * Check if ACF Pro is active
+ *
+ * @return bool True if ACF Pro is active, false otherwise.
  */
-function check_acf_pro() {
-    // Check if ACF Pro plugin is active
-    if ( ! function_exists( 'acf_pro_is_active' ) ) {
-        add_action( 'admin_notices', 'acf_pro_missing_notice' );
-    }
+function is_acf_pro_active() {
+    return class_exists('acf_pro');
 }
-add_action( 'admin_init', 'check_acf_pro' );
 
 /**
- * Display notice if ACF Pro is missing
+ * Display ACF Pro not installed notice
  */
-function acf_pro_missing_notice() {
-    ?>
-    <div class="notice notice-error is-dismissible">
-        <p><?php esc_html_e( 'This theme requires Advanced Custom Fields (ACF) Pro to be installed and activated. Please install and activate ACF Pro to unlock all features.', 'your-theme-textdomain' ); ?></p>
-    </div>
-    <?php
+function acf_pro_not_installed_notice() {
+    if (!is_acf_pro_active()) {
+        ?>
+        <div class="notice notice-error">
+            <p><strong>This theme requires Advanced Custom Fields Pro to function properly.</strong> Please install and activate the ACF Pro plugin to use all theme features.</p>
+            <p>
+                <a href="https://www.advancedcustomfields.com/pro/" target="_blank">Install ACF Pro</a> |
+                <a href="https://wordpress.org/plugins/advanced-custom-fields/" target="_blank">Install ACF Free (limited features)</a>
+            </p>
+        </div>
+        <?php
+    }
 }
 
-
+add_action('admin_notices', 'acf_pro_not_installed_notice');
 
 /**
  * ACF Load More Repeater
 */
 
 // add action for logged in users
-add_action('wp_ajax_my_repeater_show_more', 'my_repeater_show_more');
+add_action('wp_ajax_fetch_faq_items_by_offset', 'fetch_faq_items_by_offset');
 // add action for non logged in users
-add_action('wp_ajax_nopriv_my_repeater_show_more', 'my_repeater_show_more');
+add_action('wp_ajax_nopriv_fetch_faq_items_by_offset', 'fetch_faq_items_by_offset');
 
-function my_repeater_show_more() {
-	// validate the nonce
-	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field_nonce')) {
-		exit;
-	}
-	// make sure we have the other values
-	if (!isset($_POST['post_id']) || !isset($_POST['offset'])) {
-		return;
-	}
+function fetch_faq_items_by_offset() {
+
+
+	// Validate nonce (ensure security)
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field_nonce')) {
+        wp_send_json_error(array('message' => 'Invalid nonce'));
+        exit;
+    }
+
+
+	// Validate and sanitize required data (prevent vulnerabilities)
+    $post_id = isset($_POST['post_id']) ? (int) sanitize_text_field($_POST['post_id']) : 0; // Ensure integer
+    $offset = isset($_POST['offset']) ? (int) sanitize_text_field($_POST['offset']) : 0; // Ensure integer
+
+    if (!$post_id || !$offset) {
+        wp_send_json_error(array('message' => 'Missing required data'));
+        exit;
+    }
+	
 	$show = 9; // how many more to show
 	$start = $_POST['offset'];
 	$end = $start+$show;
@@ -372,4 +386,4 @@ function my_repeater_show_more() {
 	// output our 3 values as a json encoded array
 	echo json_encode(array('content' => $content, 'more' => $more, 'offset' => $end));
 	exit;
-} // end function my_repeater_show_more
+} // end function fetch_faq_items_by_offset
