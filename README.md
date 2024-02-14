@@ -51,6 +51,11 @@ $ composer install
 $ npm install
 ```
 
+While Developing the theme, run the command below to have the tailwind classes automatically complied to the dist folder.
+```sh
+npx tailwindcss/css/style.css -ost/style.css --watch
+```
+
 ### Available CLI commands
 
 `_s` comes packed with CLI commands tailored for WordPress theme development :
