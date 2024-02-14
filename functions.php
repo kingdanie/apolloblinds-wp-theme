@@ -333,7 +333,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /**
  * Hide ACF Menu so has to make users unable to manage the ACF field types and options
  */
-add_filter( 'acf/settings/show_admin', '__return_false' );
+// add_filter( 'acf/settings/show_admin', '__return_false' );.
 
 /**
  * Check if ACF Pro is active
